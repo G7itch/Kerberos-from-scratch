@@ -1,0 +1,1 @@
+#This is the script that takes in a principals ticket-granting-ticket and authenticates it and then issues a service ticket

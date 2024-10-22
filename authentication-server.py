@@ -1,0 +1,1 @@
+#This is the script that authenticates the principal in the realm and generates ticket-granting-tickets
