@@ -58,3 +58,5 @@ class ServiceAuthenticator:
     TIMESTAMP : str
 
 #send this ticket to user
+
+#finally data is sent encrypted with service session key

@@ -105,4 +105,4 @@ class UserAuthenticator:
 
 #check cache, add auth
 
-
+#finally data is sent encrypted with service session key
