@@ -1,1 +1,0 @@
-#This is the resource on the network being requested

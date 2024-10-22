@@ -1,1 +1,0 @@
-#This is the server that combines the authentication-server script and the ticket-granting-server script
