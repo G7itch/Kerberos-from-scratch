@@ -1,9 +1,10 @@
 #This is the resource on the network being requested
 import sqlite3
 from dataclasses import dataclass
+import socket
 
-SERVICE_ID = "CHANGE_ME"
-SECRET_KEY = "this_is_the_service_secret_key"
+SERVICE_ID = "0002"
+SECRET_KEY = "athis_is_the_service_secret_key"
 
 def set_up_DB() -> None:
     """Set up the database"""

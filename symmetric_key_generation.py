@@ -1,1 +1,0 @@
-#This script contains the code that drives the creation and issuing of a symmetric key

@@ -5,9 +5,6 @@ from ipaddress import ip_address, ip_network
 from typing import List
 
 
-TGS_ID = "CHANGE_ME"
-SECRET_KEY = "this_is_the_TGS_secret_key"
-
 @dataclass
 class TGT:
     """Needs the be encrypted with TGS secret key"""

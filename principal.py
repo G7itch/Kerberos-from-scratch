@@ -5,11 +5,16 @@ from ipaddress import ip_address, ip_network
 from typing import List
 from hashlib import sha256
 import sqlite3
-
+import socket
 
 #The user needs a secret key and an ID. the secetkey is generated based on a username and password
 SECRET_KEY = ""
-UID = 'userID goes here'
+UID = "0001"
+
+host = socket.gethostname() #only because it is running on the same PC, change this for proper use
+port = 5000
+principal_socket = socket.socket()
+
 
 def login() -> tuple:
     username = str(input("Please enter your username: "))
@@ -53,6 +58,7 @@ def clear_user_cache(time:str):
     con = sqlite3.connect("user.db")
     cur = con.cursor()
     cur.execute("DELETE FROM user_cache")
+    con.commit()
     con.close()
     return last_recorded_clear
 
@@ -71,14 +77,30 @@ SECRET_KEY = generate_secret_key(username, password, domain)
 @dataclass
 class InitialRequest:
     """Class that is used to generate the message for to get the TGT"""
-    UID : int
-    SERVICE_ID : int
+    UID : str
+    SERVICE_ID : str
     IP : ip_address | List[ip_address] | ip_network | None
     TTL : int
 
+principal_ticket_1 = InitialRequest(UID, "0002", ip_address('127.0.0.1'), 3600)
 
 #Once the inital request has been made, it is sent to the KDC
+
+principal_socket.connect((host,port))
+principal_socket.send(bytes(str(principal_ticket_1),encoding='utf8'))
+principal_socket.close()
+
 #Need to decrypt User_Auth_Ticket
+
+principal_socket = socket.socket()
+conn = principal_socket.connect((host,port))
+AS_ticket_1 = conn.recv(2048).decode('utf8')
+AS_ticket_2 = conn.recv(2048).decode('utf8')
+principal_socket.close()
+
+print(AS_ticket_1)
+print(AS_ticket_2)
+
 #If the user is authenticated properly then they make more requests
 @dataclass
 class ServiceAccessRequest:

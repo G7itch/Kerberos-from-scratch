@@ -3,9 +3,7 @@
 from dataclasses import dataclass
 from ipaddress import ip_address, ip_network
 from typing import List
-
-TGS_ID = "CHANGE_ME"
-SECRET_KEY = "this_is_the_TGS_secret_key"
+import sqlite3
 
 #Needs to decrypt TGT, extract session_key
 #Decrypt user_authenticator message
